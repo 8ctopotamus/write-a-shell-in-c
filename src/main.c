@@ -1,5 +1,18 @@
 #include <stdio.h>
 
+#define RL_BUFSIZE 1024
+char *_read_line(void)
+{
+	int bufsize = RL_BUFSIZE;
+	int position = 0;
+	char *buffer = malloc(sizeof(char) * bufsize);
+	int c;
+
+	if (!buffer) {
+		
+	}
+}
+
 void _loop(void) {
 	char *line;
 	char **args;
