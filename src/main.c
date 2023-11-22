@@ -9,7 +9,31 @@ char *_read_line(void)
 	int c;
 
 	if (!buffer) {
-		
+	 fprintf(stderr, "_: allocation error\n");
+	 exit(EXIT_FAILURE);
+	}
+
+	while(1) {
+		// read a character
+		c = getchar();
+		// if we hit EOF, replace it with a null characterand return
+		if (c == EOF || c == '\n') {
+			buffer[position] = '\0';
+			return buffer;
+		} else {
+			buffer[position] = c;			
+		}
+		position++;
+
+		// if we have exceeded the buffer, reallocate memory
+		if (position >= bufsize) {
+			bufsize += RL_BUFFSIZE;
+			buffer = realloc(buffer, buffsize);
+			if (!buffer) {
+				fprintf(stderr, "allocation error\n");
+				exit(EXIT_FAILURE);
+			}
+		}
 	}
 }
 
